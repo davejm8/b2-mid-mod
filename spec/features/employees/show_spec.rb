@@ -12,7 +12,7 @@ RSpec.describe 'index view' do
   let!(:sales) { Department.create!(name: "Sales", floor: "Second") }
   let!(:steve) { sales.employees.create!(name: "Steve", level: 2) }
   let!(:bob) { customer_service.employees.create!(name: "Bob", level: 5) }
-  let!(:ticket_1) { steve.tickets.create!(subject: "Toilet Big Dead", age: 5) }
+  let!(:ticket_1) { steve.tickets.create!(subject: "Toilet Big Dead", age: 1) }
   let!(:ticket_2) { steve.tickets.create!(subject: "Toilet Still Dead", age: 4) }
   let!(:ticket_3) { steve.tickets.create!(subject: "Bro, the toilet!", age: 3) }
   let!(:ticket_4) { bob.tickets.create!(subject: "Brain no worky", age: 3) }
@@ -22,6 +22,7 @@ RSpec.describe 'index view' do
 
     expect(page).to have_content("#{steve.name}")
     expect(page).to have_content("#{steve.department.name}")
-    expect(steve.tickets.first.subject).to appear_before(steve.tickets.second.subject)
+    expect(ticket_2.subject).to appear_before(ticket_1.subject)
+    expect(page).to have_content("#{ticket_2.subject}")
   end
 end

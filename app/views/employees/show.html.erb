@@ -1,5 +1,8 @@
-<%= @employee.name %>
-<%= @employee.department.name %>
-<%= @tickets.each do |ticket| %>
-<%= ticket.subject %> <%= ticket.age %>
+<h1><%= @employee.name %></h1>
+<p><%= @employee.department.name %></p>
+<% @tickets.each do |ticket| %>
+  <p><%= ticket.subject %> <%= ticket.age %></p>
 <% end %>
+
+
+<p> Oldest:<%= @tickets.first.subject %> </p>
