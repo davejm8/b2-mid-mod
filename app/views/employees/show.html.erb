@@ -1,8 +1,15 @@
 <h1><%= @employee.name %></h1>
 <p><%= @employee.department.name %></p>
 <% @tickets.each do |ticket| %>
-  <p><%= ticket.subject %> <%= ticket.age %></p>
+  <p><%= ticket.subject %> <%= ticket.age %> <%= ticket.id %></p>
 <% end %>
 
 
 <p> Oldest:<%= @tickets.first.subject %> </p>
+
+<h2>Find Tickets</h2>
+<%= form_with url: "/employee_tickets/#{@employee.id}", method: :post, local: true do |f| %>
+  <%= f.label :ticket_id, "Find Ticket" %>
+  <%= f.text_field :ticket_id %>
+  <%= f.submit "Add Ticket" %>
+<% end %>
